@@ -11,5 +11,6 @@ urlpatterns = [
    path('users/', views.UserList.as_view()),
    path('aplicacao/', views.AplicacaoList.as_view()),
    path('resgate/', views.ResgateList.as_view()),
+   path('saldo/', views.SaldoList.as_view()),
 ]
 
