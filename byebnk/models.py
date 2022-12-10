@@ -13,7 +13,11 @@ class Ativo(models.Model):
 
 class Aplicacao(models.Model):
   
-  ativo = models.ForeignKey(Ativo, on_delete=models.CASCADE)
+  ativo = models.ForeignKey(
+    Ativo,
+    models.SET_NULL,
+    blank=True,
+    null=True,)
   data_solicitacao = models.DateField()
   quantidade = models.IntegerField()
   preco = models.DecimalField(max_digits=12, decimal_places=2)
@@ -24,9 +28,14 @@ class Aplicacao(models.Model):
 
 class Resgate(models.Model):
   
-  ativo = models.ForeignKey(Ativo, on_delete=models.CASCADE)
+  ativo = models.ForeignKey(
+     Ativo,
+    models.SET_NULL,
+    blank=True,
+    null=True,)
   data_solicitacao = models.DateField()
   quantidade = models.IntegerField()
   preco = models.DecimalField(max_digits=12, decimal_places=2)
+
 
 
