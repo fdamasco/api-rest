@@ -2,7 +2,6 @@ from django.db import models
 import datetime
 
 
-
 class Ativo(models.Model):
    nome = models.CharField(max_length=100)
    modalidade = models.CharField(max_length=200)
