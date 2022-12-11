@@ -7,13 +7,17 @@ from .models import Ativo, Resgate, Aplicacao, Saldo
 from . import serializers
 from .serializers import AtivoSerializer, AplicacaoSerializer, ResgateSerializer, SaldoSerializer, UserSerializer
 from .permissions import IsOwnerOrReadOnly
+from rest_framework.authentication import BasicAuthentication, SessionAuthentication, TokenAuthentication
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from rest_framework.response import Response
 
 
 class AtivoList(generics.ListCreateAPIView):
   queryset = Ativo.objects.all()
   serializer_class = AtivoSerializer
+  authentication_classes = [BasicAuthentication, TokenAuthentication,]
   permission_classes = [permissions.IsAuthenticatedOrReadOnly,
-                      IsOwnerOrReadOnly]
+                      IsOwnerOrReadOnly, IsAuthenticatedOrReadOnly]
   
   def perform_create(self, serializer):
     serializer.save(owner=self.request.user)
@@ -38,6 +42,17 @@ class ResgateList(generics.ListCreateAPIView):
 class SaldoList(generics.ListAPIView):
   queryset = Saldo.objects.all()
   serializer_class = SaldoSerializer
+  authentication_classes = [SessionAuthentication, BasicAuthentication]
+  permission_classes = [IsAuthenticated]
+
+  def get(self, request, format=None):
+        content = {
+            'user': str(request.user), 
+            'auth': str(request.auth), 
+        }
+        return Response(content)
+  
+      
 
 class UserList(generics.ListAPIView):
   queryset = User.objects.all()
