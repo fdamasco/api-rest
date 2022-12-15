@@ -22,7 +22,10 @@ class Aplicacao(models.Model):
     models.SET_NULL,
     blank=True,
     null=True,)
-  valor = models.DecimalField(max_digits=12, decimal_places=2)
+  data_solicitacao = models.DateField()
+  preco_unitario_a = models.DecimalField(max_digits=12, decimal_places=2)
+  quantidade_ativos_a = models.IntegerField()
+  
 
   class Meta:
       verbose_name_plural = "aplicações"
@@ -35,11 +38,12 @@ class Resgate(models.Model):
     models.SET_NULL,
     blank=True,
     null=True,)
-  valor = models.DecimalField(max_digits=12, decimal_places=2)
-  
-class Saldo(models.Model):
-  saldo = models.DecimalField(max_digits=12, decimal_places=2)
+  data_solicitacao = models.DateField
+  preco_unitario_r = models.DecimalField(max_digits=12, decimal_places=2)
+  quantidade_ativos_r = models.IntegerField()
 
+
+  
 
 
 

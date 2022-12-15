@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework import viewsets
 from . import views
-from .views import AplicacaoList, AtivoList, AtivoDetail, ResgateList, UserList
+from .views import AplicacaoList, AtivoList, AtivoDetail, ResgateList, UserList, Saldo
 from rest_framework import routers
 
 
@@ -11,6 +11,6 @@ urlpatterns = [
    path('users/', views.UserList.as_view()),
    path('aplicacao/', views.AplicacaoList.as_view()),
    path('resgate/', views.ResgateList.as_view()),
-   path('saldo/', views.SaldoList.as_view()),
+   path('saldo/', views.Saldo.as_view()),
 ]
 
